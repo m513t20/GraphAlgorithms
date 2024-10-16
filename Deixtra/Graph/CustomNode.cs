@@ -1,23 +1,25 @@
-using System.Reflection.Metadata;
+using CuGraph.Edge;
 
-namespace CustomGraph.Node;
+namespace CuGraph.Node;
 
-class CustomNode{
+public class CustomNode{
     
-    public HashSet<CustomNode> neighbours{get; set;}=new HashSet<CustomNode>();
+    public HashSet<CustomEdge> Neighbours{get; set;}=new HashSet<CustomEdge>();
     public string Name {get; set;}=string.Empty;
 
     public CustomNode (string aname){
         Name = aname;
     }
 
+    public CustomNode(){}
 
 
-    public void AddNeighbour(CustomNode neighbour){
-        neighbours.Add(neighbour);
+    public void AddNeighbour(CustomNode neighbour,int length=1){
+        Neighbours.Add(new CustomEdge(neighbour,length));
     }   
     public void RemoveNeighbour(CustomNode neighbour){
-        neighbours.Remove(neighbour);
+
+        Neighbours.RemoveWhere(x => x.Finish==neighbour);
     }
 
 

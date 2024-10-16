@@ -1,10 +1,11 @@
-using CustomGraph.Node;
+using CuGraph.Edge;
+using CuGraph.Node;
 
-namespace CustomGraph.Graph;
+namespace CuGraph.Graph;
 
-class CustomGraph
+public class CustomGraph
 {
-    private HashSet<CustomNode> Nodes { get; set; }=new HashSet<CustomNode>();
+    public HashSet<CustomNode> Nodes { get; set; }=new HashSet<CustomNode>();
 
     public void AddNode(CustomNode node){
         Nodes.Add(node);
@@ -17,13 +18,15 @@ class CustomGraph
             throw new Exception("Вершина не найдена");
         }
 
+        node.Neighbours.Clear();
 
-        foreach(CustomNode child in node.neighbours){
+        foreach(CustomNode child in Nodes){
             child.RemoveNeighbour(node);
         }
         Nodes.Remove(node);
     }
-    public void AddEdge(string begin, string end){
+
+    public void AddEdge(string begin, string end,int length){
         var start=Nodes.Where(x=>x.Name==begin).FirstOrDefault();
         var finish=Nodes.Where(x=>x.Name==end).FirstOrDefault();
 
@@ -32,9 +35,9 @@ class CustomGraph
         }
 
 
-        start.AddNeighbour(finish);
-        finish.AddNeighbour(start); 
+        start.AddNeighbour(finish,length);
     }
+    
     public void RemoveEdge(string begin, string end)
     {
         var start=Nodes.Where(x=>x.Name==begin).FirstOrDefault();
@@ -46,7 +49,6 @@ class CustomGraph
 
 
         start.RemoveNeighbour(finish);
-        finish.RemoveNeighbour(start);
     }
     
 }
