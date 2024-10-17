@@ -30,8 +30,13 @@ public class CustomGraph
         var start=Nodes.Where(x=>x.Name==begin).FirstOrDefault();
         var finish=Nodes.Where(x=>x.Name==end).FirstOrDefault();
 
-        if(start==null||finish==null){
-            throw new Exception("Вершины не найдены");
+        if(start==null){
+            start=new CustomNode(begin);
+            AddNode(start);
+        }
+        if(finish==null){
+            finish=new CustomNode(end);
+            AddNode(finish);
         }
 
 
@@ -51,4 +56,16 @@ public class CustomGraph
         start.RemoveNeighbour(finish);
     }
     
+    public void ReadFromFile(string file_name){
+        StreamReader reader = File.OpenText(file_name);
+        var line=reader.ReadLine();
+        line=reader.ReadLine();
+        while(line!=null){
+            var data=line.Split('\t');
+            AddEdge(data[0],data[1],int.Parse(data[2]));
+
+            line=reader.ReadLine();
+        }
+
+    }
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms-main\\Deixtra\\Deixtra.csproj",
+      "projectUniqueName": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms\\Deixtra\\Deixtra.csproj",
       "projectName": "Deixtra",
-      "projectPath": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms-main\\Deixtra\\Deixtra.csproj",
+      "projectPath": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms\\Deixtra\\Deixtra.csproj",
       "packagesPath": "C:\\Users\\MateBookD14\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms-main\\Deixtra\\obj\\",
+      "outputPath": "D:\\Users\\MateBookD14\\Documents\\ИГУ\\graph\\GraphAlgorithms\\Deixtra\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MateBookD14\\AppData\\Roaming\\NuGet\\NuGet.Config"
