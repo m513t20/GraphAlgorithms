@@ -97,4 +97,4 @@ public class Ant{
 }
 
 
-public record AntPath(int Length, List<CustomNode> Nodes,List<CustomEdge>Edges);
+public record AntPath(long Length, List<CustomNode> Nodes,List<CustomEdge>Edges);

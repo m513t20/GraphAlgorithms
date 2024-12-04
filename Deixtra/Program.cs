@@ -56,6 +56,7 @@ void TestTxt(){
     var gr=new CustomGraph();
     gr.ReadFromFile("1000.txt");
     Console.WriteLine("Finished");
+
     var solver=new AntColonySolver(gr);
     var path=solver.Solve();
     Console.WriteLine("answer:");
@@ -101,7 +102,7 @@ void TestDij(){
 }
 
 //дейкстра
-TestDij();
+//TestDij();
 
 //Муравьи
 TestDem();

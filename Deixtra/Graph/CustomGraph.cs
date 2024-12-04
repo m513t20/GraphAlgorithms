@@ -62,10 +62,12 @@ public class CustomGraph
         line=reader.ReadLine();
         while(line!=null){
             var data=line.Split('\t');
-            AddEdge(data[0],data[1],int.Parse(data[2]));
+            AddEdge(int.Parse(data[0]).ToString(),int.Parse(data[1]).ToString(),int.Parse(data[2]));
+            AddEdge(int.Parse(data[1]).ToString(),int.Parse(data[0]).ToString(),int.Parse(data[2]));
 
             line=reader.ReadLine();
         }
+        Console.WriteLine(this.Nodes.ToArray().Length);
 
     }
 }
