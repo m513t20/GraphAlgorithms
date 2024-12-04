@@ -3,7 +3,7 @@ using CuGraph.Graph;
 using CuGraph.Node;
 using CuGraph.Tools.AntAlgoritmSolver;
 using CuGraph.Tools.DijcstraAlg;
-
+using MiniMax.Conncet4.Process;
 
 
 void TestDem(){
@@ -105,5 +105,7 @@ void TestDij(){
 //TestDij();
 
 //Муравьи
-TestDem();
+// TestDem();
 //TestTxt();
+
+var tst=new GameProcess(false);
