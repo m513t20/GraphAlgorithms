@@ -107,5 +107,7 @@ void TestDij(){
 //Муравьи
 // TestDem();
 //TestTxt();
+Console.WriteLine("First or second player 1/2");
+int player = Convert.ToInt32(Console.ReadLine());
 
-var tst=new GameProcess(false);
+var tst=new GameProcess(player==1);

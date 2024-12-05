@@ -17,15 +17,14 @@ public class GameProcess{
     public GameProcess(bool PlayersTurn=true){
         var board=new Conncet4Game();
         Console.WriteLine(board.ToString());
-        bool playerWin=false;
         bool moved=false;
-        while(board.GetMoves().Count>0 || !playerWin){
+        while(board.GetMoves().Count>0 ){
             if (PlayersTurn){
                 moved=board.MakeMove(_movePlayer(),TOKENS[1]);
                 Console.WriteLine(board.ToString());
             }
             else{
-                ComputerOpponent ai=new ComputerOpponent(board,7);
+                ComputerOpponent ai=new ComputerOpponent(board,8);
                 int move=ai.AlphaBeta();
                 //Console.WriteLine(ai.Score(board,true));
 
@@ -35,6 +34,11 @@ public class GameProcess{
                 Console.WriteLine($"move: {move}");
                 moved=board.MakeMove(move,TOKENS[0]);
                 Console.WriteLine(board.ToString());
+
+                if(ai.game_over(board)){
+                    Console.WriteLine("===Game ended===");
+                    break;
+                }
             }
 
             if(moved){
@@ -42,6 +46,18 @@ public class GameProcess{
                 PlayersTurn=!PlayersTurn;
             }
 
+
         }
+
+        if( board.GetMoves().Count>0 && !PlayersTurn){
+            Console.WriteLine("AI has won!!!");
+        }
+        else if ( board.GetMoves().Count>0){
+            Console.WriteLine("YOU won!!");
+        }
+        else{
+            Console.WriteLine("tie");
+        }
+
     }
 }

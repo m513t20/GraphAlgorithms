@@ -34,10 +34,17 @@ public class ComputerOpponent{
     }
 
 
-    private bool _has_col(Conncet4Game i_board,int row, int col,int length){
+    private bool _has_col(Conncet4Game i_board,int row, int col,int length, bool logs=false){
         int count=0;
         int space=0;
+        if (logs){
+            Console.WriteLine("===================");
+        }
         for (int cur_row=row; cur_row<6; cur_row++){
+            if (logs){
+                Console.WriteLine($"{i_board.Board[cur_row,col]} {i_board.Board[row,col]}");
+            }
+
             if (i_board.Board[row,col]==i_board.Board[cur_row,col]){
                 count++;
             }
@@ -51,6 +58,10 @@ public class ComputerOpponent{
                 break;
             }
         }
+        
+        if (logs){
+            Console.WriteLine("===================");
+        }        
         return count>=length;
     }
 
@@ -135,17 +146,22 @@ public class ComputerOpponent{
         return _CountSequences(i_board,4,'o')>0 ||  _CountSequences(i_board,4,'x')>0;
     }
 
+    public bool game_over(Conncet4Game i_board){
+        return _game_over(i_board);
+    }
+
+
     private int _CountSequences(Conncet4Game i_board,int length,char token){
         int count=0;
 
-        for (int row=0; row<_board.Board.GetLength(0); row++){
+        for (int row=2; row<_board.Board.GetLength(0); row++){
             for(int col=0; col<_board.Board.GetLength(1); col++){
-                if( _board.Board[row,col]==token){
+                if( i_board.Board[row,col]==token){
                     count+=Convert.ToInt32(_has_col(i_board,row,col,length));
                     count+=Convert.ToInt32(_has_row(i_board,row,col,length));
                     count+=Convert.ToInt32(_has_diag_left_down(i_board,row,col,length));
                     count+=Convert.ToInt32(_has_diag_right_up(i_board,row,col,length));
-                    count+=Convert.ToInt32(_has_row_trap(i_board,row,col,length))*10;
+                    //count+=Convert.ToInt32(_has_row_trap(i_board,row,col,length))*10;
                 }
             }
         }
@@ -167,7 +183,7 @@ public class ComputerOpponent{
         long  PlayerScore=weLost*10000+(almost%10)*100+(_CountSequences(i_board,2,'x')%10)*10;
 
 
-        if(weLost>0 || almost%10>0){
+        if(weLost>0 /*|| almost%10>0*/){
             return long.MinValue;
         }
         if (weWon>0){
@@ -186,7 +202,7 @@ public class ComputerOpponent{
 
         Random rand=new Random();
         int bestMove=rand.Next(0,moves.ToArray().Length);
-
+        int iniMove=bestMove;
         long alpha=long.MinValue;
         long beta=long.MaxValue;
 
@@ -199,10 +215,11 @@ public class ComputerOpponent{
                 bestScore=score;
                 bestMove=move;
             }
-
+//не видиь колонки
         }
-        Console.WriteLine($"score: {bestScore} move:{bestMove} random:{rand.Next(0,moves.ToArray().Length)} {Convert.ToInt32(_has_col(_board,6,5,4))}");
-
+        //Console.WriteLine($"score: {bestScore} move:{bestMove} random:{iniMove} {_board.Board[5,5]}:{Convert.ToInt32(_has_col(_board,2,5,4,true))}");
+        //Console.WriteLine($"o: 2:{_CountSequences(_board,2,'o')} 3:{_CountSequences(_board,3,'o')} 4:{_CountSequences(_board,4,'o')}");
+        //Console.WriteLine($"x: 2:{_CountSequences(_board,2,'x')} 3:{_CountSequences(_board,3,'x')} 4:{_CountSequences(_board,4,'x')}");
         return bestMove;
     }
 
