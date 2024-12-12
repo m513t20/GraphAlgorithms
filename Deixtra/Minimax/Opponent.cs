@@ -69,7 +69,7 @@ public class ComputerOpponent{
         int count=0;
         int space=0;
         int cur_col=col;
-        for (int cur_row=row; cur_row<i_board.Board.GetLength(0); cur_row++){
+        for (int cur_row=row; cur_row<6; cur_row++){
 
             if (i_board.Board[row,col]==i_board.Board[cur_row,cur_col]){
                 count++;
@@ -154,7 +154,7 @@ public class ComputerOpponent{
     private int _CountSequences(Conncet4Game i_board,int length,char token){
         int count=0;
 
-        for (int row=2; row<_board.Board.GetLength(0); row++){
+        for (int row=0; row<_board.Board.GetLength(0); row++){
             for(int col=0; col<_board.Board.GetLength(1); col++){
                 if( i_board.Board[row,col]==token){
                     count+=Convert.ToInt32(_has_col(i_board,row,col,length));
@@ -218,7 +218,7 @@ public class ComputerOpponent{
 //не видиь колонки
         }
         //Console.WriteLine($"score: {bestScore} move:{bestMove} random:{iniMove} {_board.Board[5,5]}:{Convert.ToInt32(_has_col(_board,2,5,4,true))}");
-        //Console.WriteLine($"o: 2:{_CountSequences(_board,2,'o')} 3:{_CountSequences(_board,3,'o')} 4:{_CountSequences(_board,4,'o')}");
+        Console.WriteLine($"o: 2:{_CountSequences(_board,2,'o')} 3:{_CountSequences(_board,3,'o')} 4:{_CountSequences(_board,4,'o')}");
         //Console.WriteLine($"x: 2:{_CountSequences(_board,2,'x')} 3:{_CountSequences(_board,3,'x')} 4:{_CountSequences(_board,4,'x')}");
         return bestMove;
     }
