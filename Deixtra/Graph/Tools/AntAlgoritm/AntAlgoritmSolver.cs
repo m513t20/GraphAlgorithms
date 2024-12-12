@@ -59,8 +59,9 @@ public class AntColonySolver{
                 //получаем путь
                 var path=ant.GetPath();
                 //если путь включает в себя полную проходку по всему графу - работаем
+                sw.WriteLine(string.Format("{0} {1} {2}",ant.Start.Name,cur_it,ret.Length));
                 if (path.Nodes.Count()==nodes_count){
-                    sw.WriteLine(string.Format("{0} {1} {2}",ant.Start.Name,cur_it,ret.Length));
+                    
                     //Console.WriteLine("yey");
                     //если путь короче кратчайшего обновляем кратчайший и зануляем счетчик для работы без изменений
                     if(path.Length<ret.Length){
