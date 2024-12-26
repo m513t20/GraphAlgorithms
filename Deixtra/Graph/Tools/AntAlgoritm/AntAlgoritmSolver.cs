@@ -29,6 +29,17 @@ public class AntColonySolver{
         }
     }
 
+    private bool _ChckGamilton(){
+        foreach(var cur_node in Graph.Nodes){
+            if(cur_node.Neighbours.Count<2){
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
     public AntColonySolver(CustomGraph graph, List<AntBlueprint> ants,double p=0.5){
         Graph=graph;
         _ColonyData=ants;
@@ -36,6 +47,10 @@ public class AntColonySolver{
     }
 
     public AntPath Solve(){
+        if (!_ChckGamilton()){
+            Console.WriteLine("Didn't find Hamilton");
+            throw new ArgumentException();
+        }
 
         //создаём ограничения
         int moves_without_change=100;
