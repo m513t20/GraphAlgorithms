@@ -191,7 +191,7 @@ public class ComputerOpponent{
         }
 
 
-        return  aiTurn? AiScore-PlayerScore : PlayerScore-AiScore;
+        return  aiTurn? AiScore-PlayerScore: PlayerScore-AiScore;
     }
 
     public int AlphaBeta(){

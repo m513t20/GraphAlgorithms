@@ -15,11 +15,16 @@ public class Ant{
 
     public bool IsMoving{get;set;}=true;
 
+    public double alpha{get;set;}=1.0;
+
+    public double beta{get;set;}=1.0;
+
+
     public Ant(CustomNode start){
         Start=start;
     }
 
-    public void ChooseNode(CustomGraph graph, Dictionary<CustomEdge,double> pheromones,double alpha, double beta){
+    public void ChooseNode(CustomGraph graph, Dictionary<CustomEdge,double> pheromones){
         //проверка на начало алгоритма
         if (!Visited.Any()){
             Visited.Add(Start);
@@ -53,31 +58,41 @@ public class Ant{
         double all_possibility=0;
         //пересчет привлекательности рёбер
         foreach (var edge in edges){
-            double pher=0.00001;
+            double pher=0.0001;
             // пахнет ли феромоном
             if (pheromones.ContainsKey(edge)){
                 pher=pheromones[edge];
             }
-            var p=Math.Pow(pher,alpha)*Math.Pow(edge.Length,beta);
+            var p=Math.Pow(pher,alpha)*Math.Pow(1.0/edge.Length,beta);
             possibility.Add(p);
             all_possibility+=p;
         }
 
+        double toLow=0.0;
         //считаем привлекательность для каждого ребра
         for(int index=0; index< possibility.Count;index++){
 
             possibility[index]=possibility[index]/all_possibility;
-            if (index>0){
-                // тут суммируем вероятности
-                possibility[index]+=possibility[index-1];
-            }
+            // if(possibility[index]<=0.1){
+            //     toLow+=0.1-possibility[index];
+            //     possibility[index]=0.1;
+            // }
         }
+
+        for(int index=1; index< possibility.Count;index++){
+            
+            possibility[index]+=possibility[index-1];
+
+        }
+        possibility[possibility.Count-1]-=toLow;
+
+
         //случайно выбираем ребро
         var randomnes=new Random();
         double rand_value=randomnes.NextDouble();
         //ищем нужный индекс
         int selected_index=possibility.Count-1;
-        while (rand_value>possibility[selected_index]){
+        while (rand_value<possibility[selected_index] && selected_index!=0){
             selected_index--;
         }
 

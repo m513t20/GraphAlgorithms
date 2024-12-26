@@ -4,6 +4,7 @@ using CuGraph.Node;
 using CuGraph.Tools.AntAlgoritmSolver;
 using CuGraph.Tools.DijcstraAlg;
 using MiniMax.Conncet4.Process;
+using CuGraph.Tools.Ant.Blueprint;
 
 
 void TestDem(){
@@ -42,8 +43,9 @@ void TestDem(){
     gr_tst.AddEdge("G","D",5);
     gr_tst.AddEdge("G","F",4);
 
+    List<AntBlueprint> Ants=[new AntBlueprint(1.0,1.0,50),new AntBlueprint(2.0,0.5,25),new AntBlueprint(0.5,2.0,25)];
 
-    var solver=new AntColonySolver(gr_tst);
+    var solver=new AntColonySolver(gr_tst,Ants);
     var path=solver.Solve();
     Console.WriteLine("answer:");
     Console.WriteLine(path.Length);
@@ -54,10 +56,12 @@ void TestDem(){
 
 void TestTxt(){
     var gr=new CustomGraph();
-    gr.ReadFromFile("1000.txt");
+    gr.ReadFromFile("G100.txt");
     Console.WriteLine("Finished");
 
-    var solver=new AntColonySolver(gr);
+    List<AntBlueprint> Ants=[new AntBlueprint(1.0,1.0,50),new AntBlueprint(2.0,0.5,25),new AntBlueprint(0.5,2.0,25)];
+
+    var solver=new AntColonySolver(gr,Ants);
     var path=solver.Solve();
     Console.WriteLine("answer:");
     Console.WriteLine(path.Length);
@@ -105,8 +109,8 @@ void TestDij(){
 //TestDij();
 
 //Муравьи
-TestDem();
-//TestTxt();
+//TestDem();
+TestTxt();
 
 
 
@@ -114,5 +118,4 @@ TestDem();
 
 // Console.WriteLine("First or second player 1/2");
 // int player = Convert.ToInt32(Console.ReadLine());
-
 // var tst=new GameProcess(player==1);

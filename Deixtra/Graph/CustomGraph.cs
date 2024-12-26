@@ -27,6 +27,10 @@ public class CustomGraph
     }
 
     public void AddEdge(string begin, string end,int length){
+        if (length<=0){
+            Console.WriteLine("Недопустимая длинна пути");
+            return;
+        }
         var start=Nodes.Where(x=>x.Name==begin).FirstOrDefault();
         var finish=Nodes.Where(x=>x.Name==end).FirstOrDefault();
 
@@ -63,7 +67,7 @@ public class CustomGraph
         while(line!=null){
             var data=line.Split('\t');
             AddEdge(int.Parse(data[0]).ToString(),int.Parse(data[1]).ToString(),int.Parse(data[2]));
-            AddEdge(int.Parse(data[1]).ToString(),int.Parse(data[0]).ToString(),int.Parse(data[2]));
+            //AddEdge(int.Parse(data[1]).ToString(),int.Parse(data[0]).ToString(),int.Parse(data[2]));
 
             line=reader.ReadLine();
         }

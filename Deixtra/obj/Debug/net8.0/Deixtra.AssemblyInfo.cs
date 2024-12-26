@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Deixtra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97e045b6fbf796309c09f5787d8953fdd0c08d9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7edc563cbb76f0722136c4836089d9a7abd363e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Deixtra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Deixtra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
